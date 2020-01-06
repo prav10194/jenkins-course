@@ -12,6 +12,13 @@ job('NodeJS example') {
         nodejs('nodejs') // this is the name of the NodeJS installation in 
                          // Manage Jenkins -> Configure Tools -> NodeJS Installations -> Name
     }
+    dsl {
+            external('projectA.groovy', 'projectB.groovy')
+            external('projectC.groovy')
+            removeAction('DISABLE')
+            ignoreExisting()
+            additionalClasspath('lib')
+        }
     steps {
         shell("npm install")
     }
